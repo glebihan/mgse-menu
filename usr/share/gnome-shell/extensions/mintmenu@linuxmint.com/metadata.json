@@ -1,0 +1,8 @@
+{
+"uuid": "mintmenu@linuxmint.com",
+"name": "mintMenu",
+"description": "An advanced Gnome Shell menu",
+"shell-version": [ "3.1.90.1" ],
+"localedir": "/usr/local/share/locale",
+"url": "http://github.com/linuxmint/mintmenu-gse"
+}

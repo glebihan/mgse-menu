@@ -1,0 +1,11 @@
+Source: mintmenu-gse
+Section: admin
+Priority: optional
+Maintainer: Clement Lefebvre <root@linuxmint.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: mintmenu-gse
+Architecture: all
+Description: Gnome Shell Extension for mintMenu
+ An advanced menu for Gnome 3
