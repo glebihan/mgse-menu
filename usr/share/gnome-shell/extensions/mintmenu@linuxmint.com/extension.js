@@ -1,17 +1,5 @@
 /* -*- mode: js2; js2-basic-offset: 4; indent-tabs-mode: nil -*- */
 
-/*
- * TODO:
- * 		- Highlight favs when hovering them
- * 		- Add places
- * 		- Add removable devices
- * 		- Place icons on the left
- * 		- Add icons to categories
- * 
- * 
- * 
- * 
- */
 const Mainloop = imports.mainloop;
 const GMenu = imports.gi.GMenu;
 const Lang = imports.lang;
