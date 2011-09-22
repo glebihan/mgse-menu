@@ -153,8 +153,9 @@ ApplicationsButton.prototype = {
 		let appSys = Shell.AppSystem.get_default();
         let j = 0;
         for ( let i = 0; i < launchers.length; ++i ) {
-            if ((app = appSys.lookup_app(launchers[i]))) {        
-                button = new FavoritesButton(app, this.menu);                
+			let app = appSys.lookup_app(launchers[i]);
+            if (app) {        
+                let button = new FavoritesButton(app, this.menu);                
                 this.favoritesBox.add_actor(button.actor);
                 ++j;
             }
@@ -179,7 +180,7 @@ ApplicationsButton.prototype = {
                 let dir = iter.get_directory();                            
                 this.applicationsByCategory[dir.get_menu_id()] = new Array();
                 this._loadCategory(dir);                
-                categoryButton = new CategoryButton(dir);
+                let categoryButton = new CategoryButton(dir);
                 categoryButton.button.connect('clicked', Lang.bind(this, function() {
 					this._select_category(dir);
 				}));
@@ -190,25 +191,26 @@ ApplicationsButton.prototype = {
             }
         }
         
-        for (directory in this.applicationsByCategory) {
-			apps = this.applicationsByCategory[directory];		
-			for (var i=0; i<apps.length; i++) {
-				app = apps[i];			
-			}						
-		}
+        // Not necessary yet.. will be used to show all apps in an "all category"
+        //for (directory in this.applicationsByCategory) {
+		//	let apps = this.applicationsByCategory[directory];		
+		//	for (var i=0; i<apps.length; i++) {
+		//		let app = apps[i];			
+		//	}						
+		//}
     },
     
      _select_category : function(dir) {			 
-		 actors = this.applicationsBox.get_children();
+		 let actors = this.applicationsBox.get_children();
 		 for (var i=0; i<actors.length; i++) {
-			actor = actors[i];			
-			 this.applicationsBox.remove_actor(actor);	
+			let actor = actors[i];			
+			this.applicationsBox.remove_actor(actor);	
 		 }
 		  
-		 apps = this.applicationsByCategory[dir.get_menu_id()];				 
+		 let apps = this.applicationsByCategory[dir.get_menu_id()];				 
 		 for (var i=0; i<apps.length; i++) {
-			app = apps[i];			
-			applicationButton = new ApplicationButton(app);			
+			let app = apps[i];			
+			let applicationButton = new ApplicationButton(app);			
 			this.applicationsBox.add_actor(applicationButton.actor);			
 		 }
 	 }
