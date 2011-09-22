@@ -126,11 +126,12 @@ ApplicationsButton.prototype = {
             if (nextType == GMenu.TreeItemType.ENTRY) {
                 var entry = iter.get_entry();
                 if (!entry.get_is_excluded()) {
-					var app = appsys.lookup_app_by_tree_entry(entry);					
+					var app = appsys.lookup_app_by_tree_entry(entry);		
+                	if (!this.applicationsByCategory[dir.get_menu_id()]) this.applicationsByCategory[dir.get_menu_id()] = new Array();			
 					this.applicationsByCategory[dir.get_menu_id()].push(app);					
 				}
             } else if (nextType == GMenu.TreeItemType.DIRECTORY) {
-                this._loadCategory(iter.get_directory(), appList);
+                this._loadCategory(iter.get_directory());
             }
         }
     },
