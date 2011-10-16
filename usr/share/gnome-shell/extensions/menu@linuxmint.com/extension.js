@@ -79,7 +79,7 @@ CategoryButton.prototype = {
         this.buttonbox.add_actor(this.icon);
         this.buttonbox.add_actor(this.label);
         this.actor.set_child(this.buttonbox);
-        this.actor.set_tooltip_text(category.get_name());       
+        //this.actor.set_tooltip_text(category.get_name());       
     }
 };
 
