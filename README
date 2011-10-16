@@ -1,6 +1,6 @@
 INSTALLATION
 
-./test installs the mintMenu extension on your computer (in /usr/share/gnome-shell/extensions/mintmenu@linuxmint.com)
+./test installs the extension on your computer (in /usr/share/gnome-shell/extensions/)
 
 For the extension to work:
 
@@ -13,7 +13,7 @@ For the extension to work:
        gsettings get org.gnome.shell disabled-extensions
        gsettings get org.gnome.shell enabled-extensions
        gsettings reset org.gnome.shell enabled-extensions
-       gsettings set org.gnome.shell enabled-extensions "['mintmenu@linuxmint.com']"
+       gsettings set org.gnome.shell enabled-extensions "['extension-name@linuxmint.com']"
 
  - You need to restart Gnome Shell
        Alt+F2, and type "r"

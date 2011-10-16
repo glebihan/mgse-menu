@@ -46,8 +46,8 @@ install: build
 	dh_clean -k 
 	dh_installdirs
 
-	mkdir -p $(CURDIR)/debian/mintmenu-gse
-	cp -r $(CURDIR)/usr $(CURDIR)/debian/mintmenu-gse/
+	mkdir -p $(CURDIR)/debian/mgse-menu
+	cp -r $(CURDIR)/usr $(CURDIR)/debian/mgse-menu/
 
 # Build architecture-independent files here.
 binary-indep: build install
