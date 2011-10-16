@@ -21,11 +21,11 @@ For the extension to work:
 
 TODO
 
- - Highlight favs when hovering them
  - Add places
  - Add removable devices
- - Place icons on the left
- - Add icons to categories
+ - Some applications don't appear (for instance, Virtualbox doesn't appear in System tools)
+ - Some applications appear when they shouldn't (for instance, Banshee shows up 3 times... one for each separate .desktop file. 2 of these correspond to mime definitions though, so only the application one should show up).
+ - Replace the Gnome icon with a Linux Mint one
 
 GNOME SHELL DEVELOPMENT RESOURCES
 
