@@ -59,7 +59,12 @@
     padding-bottom: 7px;    
 }
 
-.application-button-button { 
+.application-button:hover {
+    background-color: #969696;
+    border-radius: 8px;
+}
+
+.application-button-label { 
     padding-left: 5px       
 }
 
@@ -71,6 +76,20 @@
     font-weight: normal;    
 }
 
-.category-button-button { 
+.category-button-selected {
+    padding-top: 7px;
+    padding-left: 14px;
+    padding-right: 7px;
+    padding-bottom: 7px; 
+    background-color: #969696;
+    border-radius: 8px;
+}
+
+.category-button-label { 
     padding-left: 5px       
+}
+
+.category-button-button:hover {
+    background-color: #969696;
+    border-radius: 8px;
 }

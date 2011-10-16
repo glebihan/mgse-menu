@@ -49,14 +49,16 @@ function ApplicationButton(app) {
 
 ApplicationButton.prototype = {
     _init: function(app) {
-		this.app = app;			
-		this.actor = new St.BoxLayout({style_class: 'application-button'});		
-        this.button = new St.Button({ reactive: true, label: this.app.get_name(), style_class: 'application-button-button' });        
+		this.app = app;			        
+        this.actor = new St.Button({ reactive: true, label: this.app.get_name(), style_class: 'application-button', x_align: St.Align.START });        
+        this.buttonbox = new St.BoxLayout();
+        this.label = new St.Label({ text: this.app.get_name(), style_class: 'application-button-label' });        
         this.icon = this.app.create_icon_texture(APPLICATION_ICON_SIZE); 
-        this.actor.add_actor(this.icon);
-        this.actor.add_actor(this.button);
-        this.button.set_tooltip_text(this.app.get_description());
-        this.button.connect('clicked', Lang.bind(this, function() {			
+        this.buttonbox.add_actor(this.icon);
+        this.buttonbox.add_actor(this.label);
+        this.actor.set_child(this.buttonbox);
+        this.actor.set_tooltip_text(this.app.get_description());
+        this.actor.connect('clicked', Lang.bind(this, function() {      
 			this.app.open_new_window(-1);
             appsMenuButton.menu.close();
 		}));
@@ -70,12 +72,14 @@ function CategoryButton(app) {
 CategoryButton.prototype = {
     _init: function(category) {	
 		this.icon_name = category.get_icon().get_names().toString();
-		this.actor = new St.BoxLayout({style_class: 'category-button',  track_hover: true});		
-        this.button = new St.Button({ reactive: true, label: category.get_name(), style_class: 'category-button-button'  });        
+        this.actor = new St.Button({ reactive: true, label: category.get_name(), style_class: 'category-button', x_align: St.Align.START  });        
+        this.buttonbox = new St.BoxLayout();
+        this.label = new St.Label({ text: category.get_name(), style_class: 'category-button-label' }); 
         this.icon = new St.Icon({icon_name: this.icon_name, icon_size: CATEGORY_ICON_SIZE, icon_type: St.IconType.FULLCOLOR});             
-        this.actor.add_actor(this.icon);
-        this.actor.add_actor(this.button);      
-        this.button.set_tooltip_text(category.get_name());       
+        this.buttonbox.add_actor(this.icon);
+        this.buttonbox.add_actor(this.label);
+        this.actor.set_child(this.buttonbox);
+        this.actor.set_tooltip_text(category.get_name());       
     }
 };
 
@@ -185,11 +189,11 @@ ApplicationsButton.prototype = {
                 this.applicationsByCategory[dir.get_menu_id()] = new Array();
                 this._loadCategory(dir);                
                 let categoryButton = new CategoryButton(dir);
-                categoryButton.button.connect('clicked', Lang.bind(this, function() {
-					this._select_category(dir);
+                categoryButton.actor.connect('clicked', Lang.bind(this, function() {
+					this._select_category(dir, categoryButton);
 				}));
-				categoryButton.button.connect('enter-event', Lang.bind(this, function() {
-					this._select_category(dir);
+				categoryButton.actor.connect('enter-event', Lang.bind(this, function() {
+					this._select_category(dir, categoryButton);
 				}));
                 this.categoriesBox.add_actor(categoryButton.actor);
             }
@@ -204,12 +208,20 @@ ApplicationsButton.prototype = {
 		//}
     },
     
-     _select_category : function(dir) {			 
+     _select_category : function(dir, categoryButton) {			 
 		 let actors = this.applicationsBox.get_children();
 		 for (var i=0; i<actors.length; i++) {
 			let actor = actors[i];			
 			this.applicationsBox.remove_actor(actor);	
 		 }
+         
+         let actors = this.categoriesBox.get_children();
+
+         for (var i=0; i<actors.length; i++){
+             let actor = actors[i];      
+             if (actor==categoryButton.actor) actor.style_class = "category-button-selected";
+             else actor.style_class = "category-button";
+         }
 		  
 		 let apps = this.applicationsByCategory[dir.get_menu_id()];				 
 		 for (var i=0; i<apps.length; i++) {
