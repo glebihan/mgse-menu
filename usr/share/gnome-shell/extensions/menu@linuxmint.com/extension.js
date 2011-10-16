@@ -235,7 +235,7 @@ ApplicationsButton.prototype = {
 let appsMenuButton;
 
 function enable() {   
-    Main.panel._leftBox.insert_actor(appsMenuButton.actor, 1);
+    Main.panel._leftBox.insert_actor(appsMenuButton.actor, 0);
     Main.panel._leftBox.child_set(appsMenuButton.actor, { y_fill : true } );
     Main.panel._menus.addMenu(appsMenuButton.menu);
 }
@@ -246,7 +246,7 @@ function disable() {
 
 function init() {
     appsMenuButton = new ApplicationsButton();
-    Main.panel._leftBox.insert_actor(appsMenuButton.actor, 1);
+    Main.panel._leftBox.insert_actor(appsMenuButton.actor, 0);
     Main.panel._leftBox.child_set(appsMenuButton.actor, { y_fill : true } );
     Main.panel._menus.addMenu(appsMenuButton.menu);      
 }
