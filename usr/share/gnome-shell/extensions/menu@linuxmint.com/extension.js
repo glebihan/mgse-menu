@@ -57,7 +57,8 @@ ApplicationButton.prototype = {
         this.buttonbox.add_actor(this.icon);
         this.buttonbox.add_actor(this.label);
         this.actor.set_child(this.buttonbox);
-        this.actor.set_tooltip_text(this.app.get_description());
+        if (this.app.get_description())
+            this.actor.set_tooltip_text(this.app.get_description());
         this.actor.connect('clicked', Lang.bind(this, function() {      
 			this.app.open_new_window(-1);
             appsMenuButton.menu.close();
@@ -130,7 +131,7 @@ ApplicationsButton.prototype = {
         while ((nextType = iter.next()) != GMenu.TreeItemType.INVALID) {
             if (nextType == GMenu.TreeItemType.ENTRY) {
                 var entry = iter.get_entry();
-                if (!entry.get_is_excluded()) {
+                if (!entry.get_app_info().get_nodisplay()) {
 					var app = appsys.lookup_app_by_tree_entry(entry);		
                 	if (!this.applicationsByCategory[dir.get_menu_id()]) this.applicationsByCategory[dir.get_menu_id()] = new Array();			
 					this.applicationsByCategory[dir.get_menu_id()].push(app);					
