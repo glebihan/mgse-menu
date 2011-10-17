@@ -23,8 +23,6 @@ TODO
 
  - Add places
  - Add removable devices
- - Some applications don't appear (for instance, Virtualbox doesn't appear in System tools)
- - Some applications appear when they shouldn't (for instance, Banshee shows up 3 times... one for each separate .desktop file. 2 of these correspond to mime definitions though, so only the application one should show up).
  - Replace the Gnome icon with a Linux Mint one
  - Add a "Menu" label next to the menu icon
 
